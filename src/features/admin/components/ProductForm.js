@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  clearSelectedProduct,
   createProductAsync,
   fetchAllProductByIdAsync,
   selectBrands,
@@ -7,7 +8,6 @@ import {
   selectProductById,
   updateProductAsync,
 } from '../../Product-list/productSlice';
-import clearSelectedProduct from "../../Product-list/productSlice"
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
