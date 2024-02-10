@@ -27,7 +27,7 @@ function StripeCheckout() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ totalAmount: currentOrder.totalAmount}),
       meta:{
-        orderr_id:currentOrder.id //this info will go from stripe to ur webhook
+        order_id:currentOrder.id //this info will go from stripe to ur webhook
       }
     })
       .then((res) => res.json())
