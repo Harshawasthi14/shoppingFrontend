@@ -126,7 +126,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/orders',
+    path: '/my-orders',
     element: (
       <UserOrdersPage></UserOrdersPage>
     ),
