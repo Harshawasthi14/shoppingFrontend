@@ -6,9 +6,8 @@ import {  selectProductById } from '../../Product-list/productSlice';
 import { useParams } from 'react-router-dom';
 import { addToCartAsync } from '../../cart/cartSlice';
 import { fetchProductById } from '../../Product-list/productAPI';
-import { discountedPrice } from '../../../app/constants';
 
-// TODO: In server data we will add colors, sizes , highlights. to each product
+
 
 const colors = [
   { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
@@ -37,7 +36,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-// TODO : Loading UI
+
 
 export default function AdminProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
@@ -146,7 +145,7 @@ export default function AdminProductDetail() {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <p className="text-3xl tracking-tight text-gray-900">
-              ${discountedPrice(product)}
+              ${product.discountPrice}
               </p>
 
               {/* Reviews */}

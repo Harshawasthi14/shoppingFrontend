@@ -117,7 +117,7 @@ function ProductForm() {
         } else {
           dispatch(createProductAsync(product));
           reset();
-          //TODO:  on product successfully added clear fields and show a message
+          
         }
       })}
     >

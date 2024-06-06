@@ -19,6 +19,7 @@ const email= query.get("email")
   } = useForm();
 
   console.log(errors);
+  console.log(email,token);
 
   return (
     <>
