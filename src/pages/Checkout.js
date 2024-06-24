@@ -12,6 +12,7 @@ import { useState } from 'react';
 import {
   createOrderAsync,
   selectCurrentOrder,
+  selectStatus
 } from '../features/order/orderSlice';
 import { selectUserInfo } from '../features/user/userSlice';
 
@@ -27,6 +28,7 @@ function Checkout() {
 
   const user = useSelector(selectUserInfo);
   const items = useSelector(selectItems);
+  const status = useSelector(selectStatus);
   const currentOrder = useSelector(selectCurrentOrder);
 
   const totalAmount = items.reduce(
@@ -48,7 +50,10 @@ function Checkout() {
 
   const handleAddress = (e) => {
     console.log(e.target.value);
-    setSelectedAddress(user.addresses[e.target.value]);
+    if(user && user.addresses){
+      setSelectedAddress(user.addresses[e.target.value]);
+    }
+    
   };
 
   const handlePayment = (e) => {
@@ -78,7 +83,7 @@ function Checkout() {
 
   return (
     <>
-      {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {!items.length  && <Navigate to="/" replace={true}></Navigate>}
       {currentOrder && currentOrder.paymentMethod==="cash" &&(
         <Navigate
           to={`/order-success/${currentOrder.id}`}
@@ -307,7 +312,7 @@ function Checkout() {
                 Choose from Existing addresses
               </p>
               <ul>
-                {user.addresses.map((address, index) => (
+                {user && user.addresses && user.addresses.map((address, index) => (
                   <li
                     key={index}
                     className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200"
@@ -416,7 +421,7 @@ function Checkout() {
                               <h3>
                                 <a href={item.product.id}>{item.product.title}</a>
                               </h3>
-                              <p className="ml-4">${item.product.discountPrice}</p>
+                              <p className="ml-4">Rs {item.product.discountPrice}</p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.product.brand}
@@ -462,7 +467,7 @@ function Checkout() {
               <div className="border-t border-gray-200 px-2 py-6 sm:px-2">
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>$ {totalAmount}</p>
+                  <p>Rs {totalAmount}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Total Items in Cart</p>
